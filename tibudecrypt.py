@@ -200,7 +200,10 @@ def main(args):
 		return "Error. {e}".format(e=e)
 
 	try:
-		password = getpass.getpass()
+		try:
+			password = args[2]
+		except:
+			password = getpass.getpass()
 		encrypted_file.check_password(bytes(password.encode('utf-8')))
 	except PasswordMismatchError as e:
 		return "Error: {e}".format(e=e)
